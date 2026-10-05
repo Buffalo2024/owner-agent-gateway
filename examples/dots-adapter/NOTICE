@@ -1,0 +1,11 @@
+Historical dots bridge reference
+
+The nine TypeScript files in reference-source are redacted source from the
+maintainer's original bridge deployment. On 2026-10-05 the maintainer confirmed
+ownership/redistribution rights and authorized release under the root MIT LICENSE.
+Copyright (c) 2026 Agent Dispatch contributors.
+
+This notice applies to the included snapshot only. It does not license omitted
+private platform modules or third-party dependencies. dots and original-platform
+names identify integration/provenance, not vendor endorsement or certification.
+See ../../docs/license-review.md and the root LICENSE.

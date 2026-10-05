@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-05",
+  "version": "0.1.0",
+  "stage": "OPEN_SOURCE_REFERENCE_IMPLEMENTATION",
+  "node": "24.18.0",
+  "tests": {
+    "count": 18,
+    "failed": 0,
+    "realLoopbackHttp": true,
+    "commandAdapter": true,
+    "mockAgent": true
+  },
+  "demo": "PASS",
+  "markdownLinks": "PASS",
+  "syntaxAndBasicSecretPatterns": "PASS",
+  "realAssistantAdapterCertified": false,
+  "privateContextSandboxProvided": false,
+  "publicDeployment": false,
+  "githubPublished": true,
+  "githubRepository": "https://github.com/Buffalo2024/agent-dispatch",
+  "license": "MIT",
+  "notes": [
+    "Synthetic test data only.",
+    "No original private assistant configuration or production credentials imported.",
+    "Single-process persisted state; no load certification.",
+    "Plugins are opt-in integration helpers, not complete hosted business applications."
+  ],
+  "updatedAt": "2026-10-05",
+  "historicalDotsReference": {
+    "files": 9,
+    "redactedSource": true,
+    "standaloneTypechecked": false,
+    "liveHostRerun": false,
+    "miniappPaidEndToEndVerified": true,
+    "computerBridgeDocumented": true,
+    "discussionPublished": false,
+    "paidAcceptanceVerifiedAt": "2026-10-05",
+    "liveEvidenceBasis": "Maintainer-confirmed real deployment; not rerun by repository CI",
+    "frontendContextVisible": false,
+    "underlyingContextPresent": true,
+    "independentContextsVerified": false,
+    "tenantIsolationVerified": false
+  }
+}

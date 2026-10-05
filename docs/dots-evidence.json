@@ -1,0 +1,31 @@
+{
+  "evidenceType": "maintainer-confirmed live deployment summary; not rerun by repository CI",
+  "snapshotDate": "2026-10-05",
+  "realOAuth": true,
+  "realManualClaimAndSubmit": true,
+  "realAutomaticWake": true,
+  "standardHandshakeAndExecution": true,
+  "computerHostedBridge": true,
+  "localNetworkProxyRequiredInOriginalDeployment": true,
+  "miniappIntegrationImplemented": true,
+  "realPaidMiniappEndToEndAccepted": true,
+  "multiTenantContextIsolation": false,
+  "publicRawCredentialsOrTaskIdentifiers": false,
+  "underlyingContextPresent": true,
+  "frontendContextVisible": false,
+  "transactionAmountsOrTimestampsIncluded": false,
+  "verifiedStages": [
+    "payment",
+    "requirement confirmation",
+    "execution",
+    "delivery",
+    "user acceptance",
+    "recording"
+  ],
+  "limitations": [
+    "Maintainer-confirmed functional evidence, not independent certification.",
+    "Success may include failure recovery; not proof of first-attempt success.",
+    "Recording is not proof of final monetary settlement.",
+    "No independent contexts, multi-tenant isolation or high-availability claim."
+  ]
+}

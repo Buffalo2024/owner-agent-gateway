@@ -1,0 +1,53 @@
+{
+  "snapshotDate": "2026-10-05",
+  "origin": "earlier live dots bridge experiment",
+  "containsRuntimeSecrets": false,
+  "standaloneRunnable": false,
+  "files": [
+    {
+      "file": "reference-source/contracts.ts",
+      "sha256": "fd6c99fdb462eeaa37269b4454a39f26681330f23ecd9173f00bbef9ce6f4f37",
+      "kind": "redacted historical source; not certified as standalone"
+    },
+    {
+      "file": "reference-source/service.ts",
+      "sha256": "252f38c7dad510a3760da528fefd2c5a58928f2560cac7c8b0aaf94186b19120",
+      "kind": "redacted historical source; not certified as standalone"
+    },
+    {
+      "file": "reference-source/store.ts",
+      "sha256": "0367e79cfbb47351630a79cb59bc9b91d95e2709012c6ccb5ec49efb7cbac04a",
+      "kind": "redacted historical source; not certified as standalone"
+    },
+    {
+      "file": "reference-source/rpc.ts",
+      "sha256": "5e6190ad2377a9dbb9da5366b5a3b4ec2895dc16a5589ca141d457d2e93e80fa",
+      "kind": "redacted historical source; not certified as standalone"
+    },
+    {
+      "file": "reference-source/events.ts",
+      "sha256": "10c66ceaeb7c102784867d592de2dcfbd1ef96bdad7eea158583121e8cc39d30",
+      "kind": "redacted historical source; not certified as standalone"
+    },
+    {
+      "file": "reference-source/http.ts",
+      "sha256": "fd05144ef598774cfb38cca2bd2bfb05e0d92ea05adfd11707aaa6908b5205c5",
+      "kind": "redacted historical source; not certified as standalone"
+    },
+    {
+      "file": "reference-source/local-proxy.ts",
+      "sha256": "bf3779d43c51e4a5ac46557aeec5431f29d16a4d482f29a7564f0711ee0d0876",
+      "kind": "redacted historical source; not certified as standalone"
+    },
+    {
+      "file": "reference-source/platform-agent.ts",
+      "sha256": "b085c9560e6bccb81adfe49db5d92b6120bba119a5e9cbc50a76e37f5bd9068a",
+      "kind": "redacted historical source; not certified as standalone"
+    },
+    {
+      "file": "reference-source/capability-card.ts",
+      "sha256": "c9b7de0e8f1e2effb82722322f9ab07ae5c14f08f618004eeea5d2a56d781aac",
+      "kind": "redacted historical source; not certified as standalone"
+    }
+  ]
+}

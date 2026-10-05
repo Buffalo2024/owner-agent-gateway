@@ -1,0 +1,18 @@
+{
+  "name": "agent-dispatch",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Turn an existing personal agent into an owner-controlled task executor.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "start:scheduler": "node scheduler/main.mjs",
+    "start:gateway": "node gateway/main.mjs",
+    "demo": "node examples/demo.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node scripts/check.mjs"
+  }
+}
