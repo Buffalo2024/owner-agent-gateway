@@ -13,6 +13,14 @@ export class Client {
  cancel(id){return this.request('/v1/tasks/'+encodeURIComponent(id),'DELETE')}
  async claim(key){return (await this.request('/v1/executor/claim','POST',{claimRequestId:key})).assignment}
  heartbeat(a){return this.request('/v1/executor/tasks/'+encodeURIComponent(a.taskId)+'/heartbeat','POST',{attempt:a.attempt,leaseId:a.leaseId})}
- finish(a,submissionId,result,error){return this.request('/v1/executor/tasks/'+encodeURIComponent(a.taskId)+'/result','POST',{attempt:a.attempt,leaseId:a.leaseId,submissionId,...(error?{error}:{result})})}
+ finish(a,submissionId,result,error){return this.request('/v1/executor/tasks/'+encodeURIComponent(a.taskId)+'/result','POST',{attempt:a.attempt,leaseId:a.leaseId,submissionId,...(error?{error}:{result:result&&Object.hasOwn(result,'files')?{...result,taskId:a.taskId,inputHash:a.inputHash}:result})})}
+ async uploadFile(a,data,{fileName,mimeType}){
+  const r=await fetch(this.url+'/v1/executor/tasks/'+encodeURIComponent(a.taskId)+'/files',{method:'POST',redirect:'error',headers:{authorization:'Bearer '+this.token,'content-type':mimeType,'x-file-name':encodeURIComponent(fileName),'x-task-attempt':String(a.attempt),'x-task-lease':a.leaseId},body:data,signal:AbortSignal.timeout(60000)});
+  const value=await r.json();if(!r.ok){const e=Error(value.error||'REQUEST_FAILED');e.code=value.error;e.status=r.status;throw e}return value;
+ }
+ async downloadFile(taskId,artifactId){
+  const r=await fetch(this.url+'/v1/tasks/'+encodeURIComponent(taskId)+'/files/'+encodeURIComponent(artifactId),{redirect:'error',headers:{authorization:'Bearer '+this.token},signal:AbortSignal.timeout(60000)});
+  if(!r.ok){const v=await r.json();const e=Error(v.error||'REQUEST_FAILED');e.code=v.error;e.status=r.status;throw e}return new Uint8Array(await r.arrayBuffer());
+ }
  audit(){return this.request('/v1/audit')}
 }

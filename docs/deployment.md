@@ -33,3 +33,9 @@ The reference worker executes one assignment at a time. The scheduler enforces c
 ## Before public service
 
 Complete the [security model](../SECURITY.md), a real-host isolation test, per-user credential lifecycle, admission/rate limits, retention policy, storage migration and load tests. A successful local demo is not a public production readiness statement.
+
+## Optional file store and contexts
+
+Set `AD_FILES` to a dedicated private directory before starting the scheduler to enable result uploads/downloads. Give only the scheduler OS account access, protect backups, and provide disk quotas/retention. Preserve state and file storage together during backup/restore; do not run multiple scheduler processes against the JSON files. Configure the reverse proxy for the 10 MiB binary limit and sufficient upload timeouts. No deployment occurs from installing the source.
+
+Choose owner registration `contextMode` explicitly for Muse routing. NONE preserves legacy behavior; TASK is per task; CALLER_AGENT persists one chat routing key per authenticated caller + agent. Use stable caller subjects, never display names. These are routing choices and not privacy isolation. Follow the [Muse guide](../adapters/muse/README.md) for the current live-evidence scope and host setup.

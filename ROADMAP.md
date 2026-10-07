@@ -9,6 +9,13 @@
 - Optional reception and mini-program transport helpers.
 - Synthetic integration/fault tests, CI, docs and local publication preparation.
 
+## Added locally — 2026-10-06
+
+- Portable Muse binary upload and private caller download with task/lease fencing.
+- Optional task or caller + agent context routing, persistent across scheduler restart.
+- Refreshed dots 0.4.1 source snapshot and maintainer Muse live-evidence documentation.
+- Independent installation, strong host isolation and production storage remain unfinished.
+
 ## Next: usable real-host integration
 
 - One supported real assistant adapter, independently reproducible by a new user.

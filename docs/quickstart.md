@@ -2,6 +2,8 @@
 
 ## Requirements
 
+Python 3 and Bash are required for the Muse transport and the full verification suite. The mock demo itself uses only Node.js. For synthetic task-bound file upload/download, run `npm run demo:files`. This does not call dots or Muse.
+
 Node.js 24+, npm, local filesystem access. Linux/macOS are the tested target of the command adapter's process-group cancellation. Windows uses direct child termination; descendant cleanup is not certified. The mock demo does not need a model account.
 
 ```sh

@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-06",
+  "basis": "maintainer-verified controlled deployment; not CI replay or vendor certification",
+  "live": {
+    "vaultAuthorization": true,
+    "naturalHookWake": true,
+    "probeIntervalSeconds": 300,
+    "mainDispatch": true,
+    "freshTaskSideChat": true,
+    "heartbeatHandoff": true,
+    "reasoningAndResultSubmission": true,
+    "callerAgentContextBindingDeployed": true,
+    "actualVideoFileUploadAndImport": true,
+    "userAcceptanceRecordsPresent": true,
+    "finalFinancialSettlementVerified": false
+  },
+  "repository": {
+    "genericFileTransportImplemented": true,
+    "contextRoutingOptional": true,
+    "realHostRerun": false,
+    "syntheticMediaIsGenerationEvidence": false
+  },
+  "unverified": [
+    "host-internal memory/tool isolation",
+    "VM replacement recovery",
+    "stable wake latency",
+    "independent operator reproduction"
+  ],
+  "containsProductionIdentifiers": false
+}

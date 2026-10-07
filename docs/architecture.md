@@ -51,3 +51,9 @@ Caller cancellation changes platform state immediately, invalidates its lease an
 ## Extensibility
 
 Plugins operate through the same public client/contract. Reception is optional pre-submission logic. A UI is optional presentation. Payments, review, artifacts and audit export belong to extensions. A replacement scheduler must pass the protocol conformance tests and preserve fencing semantics.
+
+## Optional task artifacts and routing
+
+Host paths differ: dots uses an owner-computer OAuth/MCP/event bridge; Muse uses hook polling, Vault HTTPS and a main dispatcher handing tasks to execution side chats. Muse may reuse one side chat for successive tasks from the same authenticated caller + agent, while retaining separate leases and receipts. These are adapter-specific behaviors, not a universal property of the generic gateway or dots snapshot.
+
+An owner-selected private file store supports task-bound uploads and caller-authenticated downloads without requiring a marketplace. Frozen assignments optionally contain a per-task or per-caller + agent routing context; this remains independent of the input contract. Neither component grants access to host history or partitions host-internal memory/tools. Both use the reference scheduler transaction/JSON persistence model and retain its single-process limitations.

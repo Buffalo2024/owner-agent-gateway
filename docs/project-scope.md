@@ -2,7 +2,7 @@
 
 ## Product aim
 
-Agent Dispatch is a standalone project with its own repository and release lifecycle, without a required platform or model.
+Owner Agent Gateway is a standalone project with its own repository and release lifecycle, without a required platform or model.
 
 A personal assistant becomes an owner-controlled callable capability asset: discoverable, executable, measurable and revocable. The project exposes selected capabilities; it does not transfer ownership or automatically expose private context.
 

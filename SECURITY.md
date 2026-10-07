@@ -2,7 +2,7 @@
 
 ## Status
 
-Version 0.1.x is experimental. Do not expose a private assistant to untrusted callers without verified host/tool/data isolation. There has been no independent security audit.
+Version 0.2.x is experimental. Do not expose a private assistant to untrusted callers without verified host/tool/data isolation. There has been no independent security audit.
 
 For the current dots reference, frontend context invisibility does not mean context is absent. Independent contexts and tenant isolation are not established. Restrict use to personal or single-trust-domain operation; do not promise cross-user confidentiality based on task ownership checks alone.
 

@@ -1,23 +1,28 @@
 {
-  "date": "2026-10-05",
-  "version": "0.1.0",
+  "date": "2026-10-07",
+  "version": "0.2.0",
   "stage": "OPEN_SOURCE_REFERENCE_IMPLEMENTATION",
   "node": "24.18.0",
   "tests": {
-    "count": 18,
+    "count": 27,
     "failed": 0,
     "realLoopbackHttp": true,
     "commandAdapter": true,
-    "mockAgent": true
+    "mockAgent": true,
+    "musePythonBinaryTransport": true,
+    "taskFileOwnershipAndLeaseFencing": true,
+    "contextRoutingRestartAndOwnership": true
   },
   "demo": "PASS",
+  "fileDeliveryDemo": "PASS",
+  "shellSyntax": "PASS",
   "markdownLinks": "PASS",
   "syntaxAndBasicSecretPatterns": "PASS",
   "realAssistantAdapterCertified": false,
   "privateContextSandboxProvided": false,
   "publicDeployment": false,
   "githubPublished": true,
-  "githubRepository": "https://github.com/Buffalo2024/agent-dispatch",
+  "githubRepository": "https://github.com/Buffalo2024/owner-agent-gateway",
   "license": "MIT",
   "notes": [
     "Synthetic test data only.",
@@ -25,9 +30,9 @@
     "Single-process persisted state; no load certification.",
     "Plugins are opt-in integration helpers, not complete hosted business applications."
   ],
-  "updatedAt": "2026-10-05",
+  "updatedAt": "2026-10-07",
   "historicalDotsReference": {
-    "files": 9,
+    "files": 11,
     "redactedSource": true,
     "standaloneTypechecked": false,
     "liveHostRerun": false,
@@ -39,6 +44,17 @@
     "frontendContextVisible": false,
     "underlyingContextPresent": true,
     "independentContextsVerified": false,
-    "tenantIsolationVerified": false
+    "tenantIsolationVerified": false,
+    "sourceSnapshotRelease": "0.4.1"
+  },
+  "sourceManifestHashes": "PASS",
+  "pythonSyntax": "PASS",
+  "museLiveEvidenceFile": "muse-evidence.json",
+  "localSync": {
+    "pushed": true,
+    "productionDeploymentChanged": false,
+    "fileStoreOptIn": true,
+    "contextRoutingOptIn": true,
+    "hostMemoryIsolationVerified": false
   }
 }

@@ -1,4 +1,4 @@
-// Historical deployed bridge reference; see ../README.md for dependencies and limits.
+// Redacted deployed bridge reference (2026-10-06); see ../README.md for dependencies and limits.
 import { sha256Canonical } from "../../protocol-adapters/src/canonical-json.ts";
 export { sha256Canonical };
 export class BridgeError extends Error {
@@ -83,6 +83,13 @@ export function inputContract(v: any) {
   };
 }
 export function resultContract(v: any) {
+  if(v?.schemaVersion==='public_task.result.v2') {
+    object(v,['schemaVersion','taskId','inputHash','files'],['text','points']);uuid(v.taskId);
+    requireThat(typeof v.inputHash==='string'&&/^[a-f0-9]{64}$/.test(v.inputHash),'RESULT_TASK_BINDING_INVALID');
+    requireThat(Array.isArray(v.files)&&v.files.length<=8&&new Set(v.files).size===v.files.length&&v.files.every((x:any)=>typeof x==='string'&&/^[a-f0-9]{64}$/.test(x)),'RESULT_FILES_INVALID');
+    requireThat(v.text===undefined||(typeof v.text==='string'&&length(v.text)<=20000&&!risk(v.text)),'RESULT_BOUNDARY_REJECTED');
+    return {schemaVersion:v.schemaVersion,taskId:v.taskId,inputHash:v.inputHash,files:[...v.files] as string[],...(v.text?{text:normalize(v.text)}:{}),points:v.text?[normalize(v.text)]:[]};
+  }
   object(v, ["schemaVersion", "points"]);
   const general = v.schemaVersion === "public_task.result.v1";
   requireThat(general || v.schemaVersion === "public_text_summary.result.v1");
@@ -109,14 +116,15 @@ const schema = (
 ) => ({ type: "object", properties, required, additionalProperties: false });
 const attempt = { taskId: id, attemptId: id, leaseId: id };
 const resultSchema = schema({
-  schemaVersion: { enum: ["public_text_summary.result.v1", "public_task.result.v1"] },
+  taskId:id,inputHash:{type:"string",pattern:"^[a-f0-9]{64}$"},text:{type:"string",maxLength:20000},files:{type:"array",maxItems:8,items:{type:"string",pattern:"^[a-f0-9]{64}$"}},
+  schemaVersion: { enum: ["public_text_summary.result.v1", "public_task.result.v1", "public_task.result.v2"] },
   points: {
     type: "array",
     minItems: 1,
     maxItems: 30,
     items: { type: "string", minLength: 1, maxLength: 4000 },
   },
-});
+},["schemaVersion"]);
 export const tools = [
   {
     name: "claim_task",
@@ -137,6 +145,11 @@ export const tools = [
     description: "读取受权任务状态及回写回执，不返回未审核候选正文。",
     inputSchema: schema({ taskId: id }),
     annotations: { readOnlyHint: true },
+  },
+  {
+    name:"prepare_result_upload",
+    description:"为当前有效任务获取一次任务绑定的文件上传地址。使用本任务生成的文件原始字节POST上传，再将回执artifactId放入public_task.result.v2.files；不能上传主人私人文件。单文件10MiB，最多8个。",
+    inputSchema:schema(attempt),annotations:{readOnlyHint:false,idempotentHint:true},
   },
   {
     name: "submit_result",

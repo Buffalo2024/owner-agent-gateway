@@ -1,4 +1,4 @@
-// Historical deployed bridge reference; see ../README.md for dependencies and limits.
+// Redacted deployed bridge reference (2026-10-06); see ../README.md for dependencies and limits.
 import { request as connectRequest } from 'node:http';
 import { Agent, request } from 'node:https';
 import { connect as tlsConnect } from 'node:tls';

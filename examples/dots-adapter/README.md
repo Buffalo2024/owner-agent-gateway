@@ -2,13 +2,13 @@
 
 [中文部署说明](../../docs/dots-computer-bridge.zh-CN.md)
 
-This directory contains redacted source from a bridge used with a real personal dots assistant. It is historical implementation evidence, not a new standalone host adapter certified against the generic Agent Dispatch scheduler.
+This directory contains redacted source from a bridge used with a real personal dots assistant. It is versioned implementation evidence, not a new standalone host adapter certified against the generic Agent Dispatch scheduler.
 
 Original-platform interfaces remain only as historical source references; public names have been generalized. They are not prerequisites for the runnable root project. The snapshot needs the interfaces listed below to be ported; no account signup can make those omitted interfaces available in this repository.
 
 ## License and provenance review
 
-See the file-by-file [review record](../../docs/license-review.md) and [NOTICE](NOTICE). The nine-file manifest was inspected for imports and attribution notices; all hashes match. On 2026-10-05 the maintainer confirmed that these are owned sources with redistribution rights and authorized MIT publication under the root LICENSE. This is a maintainer declaration, not an independent legal audit. No dots endorsement, vendor source-code license or license for omitted private platform modules is implied.
+See the file-by-file [review record](../../docs/license-review.md) and [NOTICE](NOTICE). The refreshed eleven-file manifest was inspected for imports and attribution notices; all hashes match. On 2026-10-05 the maintainer confirmed that these are owned sources with redistribution rights and authorized MIT publication under the root LICENSE. This is a maintainer declaration, not an independent legal audit. No dots endorsement, vendor source-code license or license for omitted private platform modules is implied.
 
 ## What actually ran
 
@@ -20,7 +20,7 @@ Real controlled tests confirmed OAuth connection, manual claim/read/submit, actu
 
 | File | Role |
 |---|---|
-| contracts.ts | Bounded inputs/results, MCP tools, source-only checks |
+| contracts.ts | Bounded inputs/results, MCP tools, legacy source-only checks and task-bound file results |
 | service.ts | OAuth, task ownership, claims, retries, receipts and revocation |
 | store.ts | Original PostgreSQL-backed bridge state |
 | rpc.ts | MCP/JSON-RPC tools and host event interface |
@@ -28,9 +28,14 @@ Real controlled tests confirmed OAuth connection, manual claim/read/submit, actu
 | local-proxy.ts | Explicit loopback CONNECT proxy and TLS verification |
 | platform-agent.ts | Original platform handshake and result callback adapter |
 | capability-card.ts | Original restricted capability description |
-| http.ts | HTTP/OAuth/MCP routes and composition |
+| http.ts | HTTP/OAuth/MCP routes and composition, binary upload/download |
+| agent-results/files.mjs / files.d.mts | Shared bounded artifact storage, format checks and delivery requirements |
 
 `source-manifest.json` hashes the published redacted files. It contains no task IDs, account IDs, host dot IDs or credential values.
+
+## 2026-10-06 snapshot update
+
+Release 0.4.1 now includes `prepare_result_upload`, lease-bound upload URLs, `public_task.result.v2`, binary artifact callbacks and the shared `reference-source/agent-results/files.mjs` implementation with its type declaration. Per-file SHA256 values are refreshed. Owner labels and the sample price constant are generalized; wire protocol names remain for compatibility. The snapshot still retains original-platform imports and is not independently runnable.
 
 ## Dependencies and portability
 

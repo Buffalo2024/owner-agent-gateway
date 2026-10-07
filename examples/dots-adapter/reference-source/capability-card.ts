@@ -1,8 +1,8 @@
-// Historical deployed bridge reference; see ../README.md for dependencies and limits.
+// Redacted deployed bridge reference (2026-10-06); see ../README.md for dependencies and limits.
 import type {AgentCapabilityCardV1} from "../../contracts/src/reception.ts";
-export const dotsCapabilityCard:AgentCapabilityCardV1 = {
+export const exampleCapabilityCard:AgentCapabilityCardV1 = {
   "schemaVersion": "agent.capability-card.v1",
-  "summary": "Example owner的私人dots，了解Example owner的部分思路。以异步方式处理任务，完成后返回结果。",
+  "summary": "主人的私人dots，经主人授权处理任务。以异步方式处理任务，完成后返回结果。",
   "capabilities": [
     {
       "id": "general-test-task",
@@ -24,7 +24,7 @@ export const dotsCapabilityCard:AgentCapabilityCardV1 = {
     }
   ],
   "outputs": [
-    "按任务要求返回文字结果，可分段、列出依据和不确定项；不强制三点或逐字摘录。"
+    "按已确认任务交付文字或实际生成的图片、音频、视频、文档、压缩包等文件；单文件最多10MiB、最多8个。能力不足时明确失败，不能用文字说明替代要求的文件。"
   ],
   "acceptsFiles": false,
   "execution": {

@@ -1,6 +1,6 @@
 {
   "evidenceType": "maintainer-confirmed live deployment summary; not rerun by repository CI",
-  "snapshotDate": "2026-10-05",
+  "snapshotDate": "2026-10-06",
   "realOAuth": true,
   "realManualClaimAndSubmit": true,
   "realAutomaticWake": true,
@@ -27,5 +27,9 @@
     "Success may include failure recovery; not proof of first-attempt success.",
     "Recording is not proof of final monetary settlement.",
     "No independent contexts, multi-tenant isolation or high-availability claim."
-  ]
+  ],
+  "deployedReferenceRelease": "0.4.1",
+  "multiFormatFileTransportIncluded": true,
+  "snapshotFiles": 11,
+  "standaloneGenericDotsAdapter": false
 }

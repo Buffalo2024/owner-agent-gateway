@@ -1,0 +1,68 @@
+{
+  "id": "public-task",
+  "version": "2.0.0",
+  "title": "Owner-approved non-private task",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "text": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 10000
+      },
+      "expectedOutputs": {
+        "type": "array",
+        "maxItems": 20,
+        "items": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      }
+    },
+    "required": [
+      "text"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "taskId": {
+        "type": "string",
+        "maxLength": 36
+      },
+      "inputHash": {
+        "type": "string",
+        "maxLength": 64
+      },
+      "text": {
+        "type": "string",
+        "maxLength": 20000
+      },
+      "files": {
+        "type": "array",
+        "maxItems": 8,
+        "items": {
+          "type": "string",
+          "minLength": 64,
+          "maxLength": 64
+        }
+      }
+    },
+    "required": [
+      "taskId",
+      "inputHash",
+      "files"
+    ],
+    "additionalProperties": false
+  },
+  "permissions": {
+    "data": "task-only",
+    "tools": []
+  },
+  "execution": {
+    "maxConcurrency": 1,
+    "timeoutSeconds": 900,
+    "maxAttempts": 3
+  }
+}

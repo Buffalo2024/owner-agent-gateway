@@ -1,53 +1,68 @@
 {
-  "snapshotDate": "2026-10-05",
-  "origin": "earlier live dots bridge experiment",
+  "snapshotDate": "2026-10-06",
+  "origin": "maintainer-owned deployed dots bridge, release 0.4.1",
   "containsRuntimeSecrets": false,
   "standaloneRunnable": false,
+  "redactions": [
+    "owner and assistant labels",
+    "sample price constant",
+    "authorization title and server display name"
+  ],
   "files": [
     {
+      "file": "reference-source/capability-card.ts",
+      "sha256": "fcf2521e12f284b3ab228e34205a3e045caf50d3a63ae2f197c129c340683018",
+      "kind": "redacted deployed reference; not standalone"
+    },
+    {
       "file": "reference-source/contracts.ts",
-      "sha256": "fd6c99fdb462eeaa37269b4454a39f26681330f23ecd9173f00bbef9ce6f4f37",
-      "kind": "redacted historical source; not certified as standalone"
-    },
-    {
-      "file": "reference-source/service.ts",
-      "sha256": "252f38c7dad510a3760da528fefd2c5a58928f2560cac7c8b0aaf94186b19120",
-      "kind": "redacted historical source; not certified as standalone"
-    },
-    {
-      "file": "reference-source/store.ts",
-      "sha256": "0367e79cfbb47351630a79cb59bc9b91d95e2709012c6ccb5ec49efb7cbac04a",
-      "kind": "redacted historical source; not certified as standalone"
-    },
-    {
-      "file": "reference-source/rpc.ts",
-      "sha256": "5e6190ad2377a9dbb9da5366b5a3b4ec2895dc16a5589ca141d457d2e93e80fa",
-      "kind": "redacted historical source; not certified as standalone"
+      "sha256": "371ad17a0f7264188288b080a910bbd18c55165375ca7c054b18085055d8dc75",
+      "kind": "redacted deployed reference; not standalone"
     },
     {
       "file": "reference-source/events.ts",
-      "sha256": "10c66ceaeb7c102784867d592de2dcfbd1ef96bdad7eea158583121e8cc39d30",
-      "kind": "redacted historical source; not certified as standalone"
+      "sha256": "68b4ce5e9ce6a6bb48a9a373c17b6508a74c078c9fa54a88abfc9b4a16bd28eb",
+      "kind": "redacted deployed reference; not standalone"
     },
     {
       "file": "reference-source/http.ts",
-      "sha256": "fd05144ef598774cfb38cca2bd2bfb05e0d92ea05adfd11707aaa6908b5205c5",
-      "kind": "redacted historical source; not certified as standalone"
+      "sha256": "e2e0bc0bef92cfc9dbb571d5eeba72a6df2dc10fa7bb04e98c974f06fcb740ad",
+      "kind": "redacted deployed reference; not standalone"
     },
     {
       "file": "reference-source/local-proxy.ts",
-      "sha256": "bf3779d43c51e4a5ac46557aeec5431f29d16a4d482f29a7564f0711ee0d0876",
-      "kind": "redacted historical source; not certified as standalone"
+      "sha256": "fa505e278d393ae925a4899ea95d9c13bf2ae768cf7be6b3753d6812cb2ba3a9",
+      "kind": "redacted deployed reference; not standalone"
     },
     {
       "file": "reference-source/platform-agent.ts",
-      "sha256": "b085c9560e6bccb81adfe49db5d92b6120bba119a5e9cbc50a76e37f5bd9068a",
-      "kind": "redacted historical source; not certified as standalone"
+      "sha256": "22c876007b9166ec5be69b74a2536e02ca066300e2e686efd621b2aafe2c9811",
+      "kind": "redacted deployed reference; not standalone"
     },
     {
-      "file": "reference-source/capability-card.ts",
-      "sha256": "c9b7de0e8f1e2effb82722322f9ab07ae5c14f08f618004eeea5d2a56d781aac",
-      "kind": "redacted historical source; not certified as standalone"
+      "file": "reference-source/rpc.ts",
+      "sha256": "bb5047f4d835d192ceb1a137df92b2335c1b78256c283b74e6e291c9deab5dbe",
+      "kind": "redacted deployed reference; not standalone"
+    },
+    {
+      "file": "reference-source/service.ts",
+      "sha256": "79cf97527b3f10bb4752868c27ce7e7cb130fd9a7cbc329102b5c035617529da",
+      "kind": "redacted deployed reference; not standalone"
+    },
+    {
+      "file": "reference-source/store.ts",
+      "sha256": "768f6f67d4eff8a7d72c8651a7b75e9449db83d1924a73d8a5140798d40671e6",
+      "kind": "redacted deployed reference; not standalone"
+    },
+    {
+      "file": "reference-source/agent-results/files.mjs",
+      "sha256": "bef5934bc394d164bff211831e4d3d21c7a1f0a2d56ce803f807825fe60ac314",
+      "kind": "shared result-file dependency, authored implementation"
+    },
+    {
+      "file": "reference-source/agent-results/files.d.mts",
+      "sha256": "126336d89b62a70ed10cd48f941f9ad658f35eee3652060db555f0b293e535b3",
+      "kind": "shared result-file dependency, authored implementation"
     }
   ]
 }

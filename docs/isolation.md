@@ -41,3 +41,7 @@ Only layers 1 and parts of 2 are implemented generically here. Layers 3–5 requ
 Task input and result are persisted in plaintext in the state file. Treat it as private data, encrypt disks/backups where appropriate, restrict directory access and define retention before live use. Audit includes only task IDs, agent IDs, attempts, event types and times. There is a finite task capacity but no automatic retention cleanup in v0.1.
 
 For a public service, add quotas, an issuer with short-lived credentials, revocation enforcement, secure storage and a privacy review. Those are release gates for public operation, not claims made by this prototype.
+
+## Routing versus host memory
+
+Optional CALLER_AGENT routing binds authenticated caller and agent; task retries keep the accepted routing metadata, and file downloads check caller ownership. These controls do not partition Muse/dots host memory, tools or files. Side chats may still share host memory. The core does not inject history, grant history permissions or promise confidentiality between mutually untrusted users. Use TASK mode or a genuinely isolated host where required; a fresh chat alone still does not prove isolation.

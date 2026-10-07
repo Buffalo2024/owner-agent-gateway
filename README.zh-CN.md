@@ -1,4 +1,4 @@
-# Agent Dispatch
+# Owner Agent Gateway
 
 把已有的个人 AI 助理接入标准任务协议，使其成为由主人控制、可被外部系统调度的执行端。
 
@@ -10,13 +10,21 @@
 
 项目重点是已有助理的接入，而非重新开发一个助理。主人声明对外开放的能力，网关连接调度器、领取任务、启动执行并回传结果。主人保留运行环境、权限配置以及暂停和撤销接入的决定权。
 
-**当前为实验性 v0.1.0 参考实现。** 演示采用确定性文本摘录，不调用真实模型。命令行适配器可运行，但独立进程不等于隐私沙箱。尚未提供已认证的商业助理宿主适配器，不能把演示成功理解为任意私人助理已安全接入。
+**当前为实验性 v0.2.0 参考实现。** 演示采用确定性文本摘录，不调用真实模型。命令行适配器可运行，但独立进程不等于隐私沙箱。尚未提供已认证的商业助理宿主适配器，不能把演示成功理解为任意私人助理已安全接入。
 
-## 当前定位与验证范围
+## 两种真实宿主接入
+
+| 宿主 | 已验证的真实部署 | 本仓库入口 | 可复用程度 |
+| --- | --- | --- | --- |
+| dots | OAuth、事件执行、小程序付费到记录、文件回传 | [接入导航](adapters/dots/README.md) | 脱敏实现参考，仍需移植原平台接口 |
+| Muse | 保险库授权、自然唤醒、旁聊执行、续租、结果与文件回传 | [安装与运行](adapters/muse/README.md) | 通用传输包，仍需自己的宿主授权与配置 |
+
+真实接入成功与独立用户安装复现是不同结论。两种宿主均不宣称多租户记忆隔离。
+改名兼容规则见 [名称说明](docs/renaming.md)。代码、包和 GitHub 仓库已使用新名称。
 
 个人 AI 助理能力开放协议，以及让已有助理接受外部任务的参考实现。当前适合个人开发者、受控小规模试用和单租户服务，不宣称商业级调度平台。
 
-### 原始 dots 案例（历史真实验证）
+### dots：插件与主人电脑桥接
 
 以下真实场景结论由项目维护者完成验证并确认，不是本仓库 CI 重跑真实支付或 dots 得出的结论。
 
@@ -26,6 +34,21 @@
 - ✅ 微信小程序真实付费到记录的完整闭环已验证：付费、需求确认、执行、成果交付、用户验收与史官记录。
 
 **小程序链路经过主人电脑及其本地网络代理，不是公网服务器直接到 GPT 的完整转发执行。** 电脑需要保持运行和联网。详见 [真实部署说明](docs/dots-computer-bridge.zh-CN.md) 和 [脱敏源码参考](examples/dots-adapter/README.md)。
+
+dots 通过 OAuth/MCP 插件与事件通知领取、读取和提交任务。插件前端不显示上下文，但宿主实际上下文仍存在。**当前没有实现 Muse 式的按用户旁聊创建与续聊机制，不能将 Muse 的聊天行为套用到 dots。** 本仓库提供 dots 脱敏实现参考，原平台依赖仍需移植。
+
+### Muse：主聊天调度，任务旁聊执行
+
+Muse 通过 Hook 探测可用任务，使用保险库鉴权访问 HTTPS 任务接口；主聊天负责调度，不承载任务推理或展示任务正文与成果。
+
+- 首次任务进入对应的执行旁聊；没有映射时创建新旁聊。
+- 同一已认证用户、同一个 Agent 的后续任务，可以在这个旁聊继续，使用主人和当前能力授权的同用户历史。
+- 每个任务有自己的执行记录，但不一定每次新建旁聊：`CALLER_AGENT` 模式复用用户旁聊，`TASK` 模式才逐任务创建独立路由。
+- 不同用户或不同 Agent 不复用旁聊映射。身份由服务端鉴权确定，不用昵称或头像匹配。
+- 旁聊复用不复用任务：新任务拥有独立 taskId、attempt、leaseId、inputHash 与提交回执。
+
+已验证真实授权、自然唤醒、旁聊执行、续租和结果/文件回传；宿主内部记忆与工具隔离仍未验证。
+详见 [Muse 接入](adapters/muse/README.md) 与 [验证摘要](docs/muse-evidence.json)。
 
 ### 本开源仓库
 
@@ -51,13 +74,14 @@
 
 ## 立即运行
 
-安装 Node.js 24 或更新版本后：
+核心与演示需要 Node.js 24 或更新版本；完整 Muse 测试还需要 Python 3、Bash，宿主探针需要 curl。安装后：
 
 ```sh
 npm ci
 npm run demo
 npm test
 npm run check
+npm run demo:files
 ```
 
 无需模型密钥。演示使用真实本地 HTTP 服务完成注册、提交、领取、执行、交付，并验证暂停、恢复和撤销；临时凭证与数据在结束后清理。
@@ -82,23 +106,23 @@ npm run check
 
 ## 当前限制
 
-单进程 JSON 存储适合演示和受控试用，不能多进程共享，尚无生产负载验证。当前凭证是按角色与主体绑定的静态令牌，未实现 OAuth、自助注册或自动续期。任务自动重试仅针对租约丢失；明确报告的执行失败直接终止。网关每次处理一个任务。输入输出以小型 JSON 为主，不包含文件存储或流式交付。
+单进程 JSON 存储适合演示和受控试用，不能多进程共享，尚无生产负载验证。当前凭证是按角色与主体绑定的静态令牌，未实现 OAuth、自助注册或自动续期。任务自动重试仅针对租约丢失；明确报告的执行失败直接终止。网关每次处理一个任务。输入仍以有界 JSON 为主；通过 AD_FILES 可启用任务绑定的成果文件存储与鉴权下载，单文件 10 MiB、每任务最多 8 个。未提供流式交付、自动清理或分布式存储。contextMode 可选 NONE、TASK、CALLER_AGENT；用户路由及旁聊分开不代表宿主内部记忆或工具隔离。
 
 文档：[架构](docs/architecture.md)、[宿主适配](docs/adapters.md)、[权限与隔离](docs/isolation.md)、[部署](docs/deployment.md)、[开源发布](docs/publishing.md)、[路线图](ROADMAP.md)。
 
 核心、可选通用插件及维护者确认有权开源的 dots 历史源码采用 MIT 许可证；范围与归属记录见 [许可审查](docs/license-review.md)。
-独立 GitHub 仓库：[Buffalo2024/agent-dispatch](https://github.com/Buffalo2024/agent-dispatch)。[发布元信息](docs/github-metadata.md)。不发布 npm 包；隔离讨论仍为本地草稿。
+独立 GitHub 仓库：[Buffalo2024/owner-agent-gateway](https://github.com/Buffalo2024/owner-agent-gateway)。[发布元信息](docs/github-metadata.md)。不发布 npm 包；隔离讨论仍为本地草稿。
 
 下载源码后运行上面的安装与演示命令，也可以执行：
 
 ```sh
-git clone https://github.com/Buffalo2024/agent-dispatch.git
-cd agent-dispatch
+git clone https://github.com/Buffalo2024/owner-agent-gateway.git
+cd owner-agent-gateway
 ```
 
 ## 联系与市场体验
 
-技术交流与商务合作：`zzjeff1993.agent@gmail.com`。添加微信请注明 Agent Dispatch。
+技术交流与商务合作：`zzjeff1993.agent@gmail.com`。添加微信请注明 Owner Agent Gateway。
 
 | 共生纪市场小程序 | 作者微信 |
 | --- | --- |

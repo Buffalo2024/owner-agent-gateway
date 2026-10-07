@@ -1,4 +1,4 @@
-// Historical deployed bridge reference; see ../README.md for dependencies and limits.
+// Redacted deployed bridge reference (2026-10-06); see ../README.md for dependencies and limits.
 import type { IncomingMessage, ServerResponse } from "node:http";
 import { randomUUID, randomBytes } from "node:crypto";
 import type { Pool } from "pg";
@@ -183,6 +183,10 @@ export function createDotsRouter(
           let request:any;try {request=JSON.parse(raw);} catch {throw new BridgeError('INVALID_JSON',400);}
           json(res,202,await platformAgent.start(request));return true;
         }
+        const uploadPath=path.match(/^\/v1\/dots\/agent\/uploads\/([0-9a-f-]{36})$/);
+        if(uploadPath&&req.method==='POST'&&platformAgent){const chunks:Buffer[]=[];let size=0;for await(const x of req){size+=x.length;requireThat(size<=10*1024*1024,'RESULT_FILE_TOO_LARGE',413);chunks.push(Buffer.from(x))}json(res,201,await platformAgent.upload(uploadPath[1],url.searchParams,Buffer.concat(chunks),decodeURIComponent(String(req.headers['x-file-name']??'')),String(req.headers['content-type']??'').split(';')[0]));return true;}
+        const filePath=path.match(/^\/v1\/dots\/agent\/artifacts\/([0-9a-f-]{36})\/([a-f0-9]{64})$/);
+        if(filePath&&req.method==='GET'&&platformAgent){const f=await platformAgent.fileArtifact(filePath[1],filePath[2],url.searchParams.get('token')??'');res.writeHead(200,{'content-type':f.descriptor.mimeType,'content-length':f.data.length,'x-content-type-options':'nosniff','cache-control':'no-store'});res.end(f.data);return true;}
         const artifactPath=path.match(/^\/v1\/dots\/agent\/artifacts\/([0-9a-f-]{36})$/);
         if (artifactPath && req.method==='GET' && platformAgent) {
           const bytes=await platformAgent.artifact(artifactPath[1],url.searchParams.get('token')??'');

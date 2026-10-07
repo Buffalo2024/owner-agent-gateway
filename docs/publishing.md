@@ -11,8 +11,8 @@
 
 ## Before uploading
 
-1. Apply the prepared [GitHub metadata](github-metadata.md): planned `Buffalo2024/agent-dispatch`, public standalone repository; check name availability before creation.
-2. Close the [license/ownership confirmation gate](license-review.md), including all nine dots snapshot files and any externally contributed materials.
+1. Apply the prepared [GitHub metadata](github-metadata.md): planned `Buffalo2024/owner-agent-gateway`, public standalone repository; check name availability before creation.
+2. Close the [license/ownership confirmation gate](license-review.md), including all files in the current dots source manifest and any externally contributed materials.
 3. Inspect all tracked files; never stage `.runtime`, `.env`, private tests or reports.
 4. Run `npm ci`, `npm run check`, `npm test`, `npm run demo`.
 5. Inspect `docs/verification.json` and ensure it matches the current tree.
@@ -23,10 +23,10 @@
 
 Repository description, topics and settings are specified in [GitHub metadata](github-metadata.md).
 
-Maintain a standalone Agent Dispatch repository, release history and issue tracker. The root package is intentionally `private: true`: GitHub source distribution is prepared, npm publication is not. This flag blocks accidental npm publication and does not prevent a public GitHub repository or forks.
+Maintain a standalone Owner Agent Gateway repository, release history and issue tracker. The root package is intentionally `private: true`: GitHub source distribution is prepared, npm publication is not. This flag blocks accidental npm publication and does not prevent a public GitHub repository or forks.
 
 Recommended first public milestone: three independent users connect their own assistants, across two runtime environments, without a proprietary platform dependency. Document real-host evidence separately from the mock demo.
 
 ## Publication status
 
-The public standalone destination is https://github.com/Buffalo2024/agent-dispatch. The maintainer confirmed rights and MIT publication permission for the historical snapshot on 2026-10-05. GitHub source publication does not deploy a live service or change existing production deployments. npm publication and remote discussion creation are not part of this release.
+The public standalone destination is https://github.com/Buffalo2024/owner-agent-gateway. The maintainer confirmed rights and MIT publication permission for the historical snapshot on 2026-10-05. GitHub source publication does not deploy a live service or change existing production deployments. npm publication and remote discussion creation are not part of this release.

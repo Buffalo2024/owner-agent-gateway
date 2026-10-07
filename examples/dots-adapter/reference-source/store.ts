@@ -1,4 +1,4 @@
-// Historical deployed bridge reference; see ../README.md for dependencies and limits.
+// Redacted deployed bridge reference (2026-10-06); see ../README.md for dependencies and limits.
 import type { Pool } from "pg";
 export type BridgeState = {
   clients: Record<string, any>;
