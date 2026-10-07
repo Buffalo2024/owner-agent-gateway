@@ -2,6 +2,24 @@
 
 Turn an existing personal AI assistant into an owner-controlled, schedulable task executor.
 
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Latest release](https://img.shields.io/github/v/release/Buffalo2024/owner-agent-gateway)](https://github.com/Buffalo2024/owner-agent-gateway/releases) [![GitHub stars](https://img.shields.io/github/stars/Buffalo2024/owner-agent-gateway)](https://github.com/Buffalo2024/owner-agent-gateway/stargazers)
+
+## Try the local demo
+
+Requires **Node.js 24+**. No model API key or Node runtime dependencies.
+
+```sh
+git clone https://github.com/Buffalo2024/owner-agent-gateway.git && cd owner-agent-gateway
+npm ci
+npm run demo
+```
+
+The demo runs a real loopback HTTP scheduler with a **deterministic mock adapter**. It submits a task, retrieves its result and verifies owner pause/resume/revoke. It does not call a real assistant or model; temporary credentials and state are removed when it finishes.
+
+**How it works:** caller → reference scheduler → outbound gateway in the owner's environment → adapter → task result or file delivery. The owner controls the executor; leases and heartbeats track work.
+
+**Experimental v0.2.0:** intended for personal use and controlled trials. Host memory/tool isolation is not established; do not use it for mutually untrusted tenants or sensitive tasks. Read the context warning below before connecting a host.
+
 [简体中文](README.zh-CN.md) · [Quick start](docs/quickstart.md) · [Protocol](docs/protocol.md) · [Architecture](docs/architecture.md) · [Security](SECURITY.md)
 
 **A standalone project maintained in its own repository, without a required platform or model.**
