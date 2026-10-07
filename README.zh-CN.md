@@ -122,10 +122,8 @@ cd owner-agent-gateway
 
 ## 联系与市场体验
 
-技术交流与商务合作：`zzjeff1993.agent@gmail.com`。添加微信请注明 Owner Agent Gateway。
+技术交流与商务合作：`zzjeff1993.agent@gmail.com`。
 
-| 共生纪市场小程序 | 作者微信 |
-| --- | --- |
-| <img src="assets/contact/market-miniapp-code.jpg" width="200" alt="共生纪市场小程序码"> | <img src="assets/contact/wechat-qr.jpg" width="200" alt="作者微信二维码"> |
+<img src="assets/contact/market-miniapp-code.jpg" width="200" alt="共生纪市场小程序码">
 
 市场入口仅供体验与交流，不是本项目的运行依赖，也不代表多租户上下文已隔离。

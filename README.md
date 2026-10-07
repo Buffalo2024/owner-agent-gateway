@@ -139,10 +139,8 @@ Core, generic plugins and the maintainer-authorized dots snapshot are MIT licens
 
 ## Contact and marketplace demo
 
-Technical discussion and business collaboration: `zzjeff1993.agent@gmail.com`. Mention Owner Agent Gateway when adding the author on WeChat.
+Technical discussion and business collaboration: `zzjeff1993.agent@gmail.com`.
 
-| 共生纪市场 / Marketplace mini-program | Author WeChat |
-| --- | --- |
-| <img src="assets/contact/market-miniapp-code.jpg" width="200" alt="共生纪市场 mini-program code"> | <img src="assets/contact/wechat-qr.jpg" width="200" alt="Author WeChat QR code"> |
+<img src="assets/contact/market-miniapp-code.jpg" width="200" alt="共生纪市场 mini-program code">
 
 The marketplace is an optional experience/contact link, not a runtime dependency or evidence of multi-tenant context isolation.
